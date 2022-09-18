@@ -1,0 +1,16 @@
+{% if animal_fact_list %}
+<ul>
+  {% for fact in animal_fact_list %}
+  <li>
+    <a href="{% url 'detail' fact.id %}">{{ fact.title }}</a>
+    <ul>
+      <li>Breed: {{ fact.breed.title }}</li>
+      <li>Description: {{ fact.description }}</li>
+      <li>Rating: {{ fact.average_rating | floatformat:1 }}</li>
+    </ul>
+  </li>
+  {% endfor %}
+</ul>
+{% else %}
+<p>No facts are available.</p>
+{% endif %}
