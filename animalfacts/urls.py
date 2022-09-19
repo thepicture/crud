@@ -1,8 +1,9 @@
-from django.urls import path, re_path
+from django.urls import path
 
 from . import views
 
+appname = 'animalfacts'
 urlpatterns = [
     path('', views.index, name='index'),
-    re_path(r'^(?P<fact_id>[0-9]+)/$', views.detail, name='detail'),
+    path('<int:fact_id>/', views.detail, name='detail'),
 ]

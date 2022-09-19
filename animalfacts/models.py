@@ -10,10 +10,11 @@ class Breed(models.Model):
 
 
 class AnimalFact(models.Model):
-    title = models.CharField(max_length=64, null=False)
+    title = models.CharField(max_length=64)
     description = models.CharField(max_length=1024, blank=True)
-    fact = models.CharField(max_length=512, null=False)
-    breed = models.ForeignKey(Breed, on_delete=models.CASCADE, null=False)
+    fact = models.CharField(max_length=512)
+    breed = models.ForeignKey(Breed, on_delete=models.CASCADE)
+    image = models.ImageField(null=True)
 
     def average_rating(self):
         return Rating.objects \
@@ -25,9 +26,9 @@ class AnimalFact(models.Model):
 
 
 class Rating(models.Model):
-    count_of_stars = models.IntegerField(null=False)
+    count_of_stars = models.IntegerField()
     animal_fact = models.ForeignKey(
-        AnimalFact, on_delete=models.CASCADE, null=False)
+        AnimalFact, on_delete=models.CASCADE)
 
     def __str__(self) -> str:
         return self.animal_fact.title + ', stars: ' + str(self.count_of_stars)

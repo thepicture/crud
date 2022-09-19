@@ -1,9 +1,21 @@
+<style>
+  img {
+    object-fit: cover;
+    border-radius: 200px;
+  }
+</style>
 {% if animal_fact_list %}
 <ul>
   {% for fact in animal_fact_list %}
   <li>
     <a href="{% url 'detail' fact.id %}">{{ fact.title }}</a>
     <ul>
+      <img
+        width="200"
+        height="200"
+        src="{{ fact.image.url }}"
+        alt="{{ fact.breed.title }} | {{ fact.description}}"
+      />
       <li>Breed: {{ fact.breed.title }}</li>
       <li>Description: {{ fact.description }}</li>
       <li>Rating: {{ fact.average_rating | floatformat:1 }}</li>
