@@ -20,6 +20,15 @@
         <li>Breed: {{ fact.breed.title }}</li>
         <li>Description: {{ fact.description }}</li>
         <li>Rating: {{ fact.average_rating | floatformat:1 }}</li>
+        <button class="fact__button fact__button--primary">Edit</button>
+        <form action="{% url 'delete' fact.id %}" method="post">
+          {% csrf_token %}
+          <input
+            type="submit"
+            value="Delete"
+            class="fact__button fact__button--dangerous"
+          />
+        </form>
       </div>
     </article>
   </li>
