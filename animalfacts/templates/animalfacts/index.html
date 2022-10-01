@@ -1,25 +1,27 @@
-<style>
-  img {
-    object-fit: cover;
-    border-radius: 200px;
-  }
-</style>
-{% if animal_fact_list %}
-<ul>
+{% if animal_fact_list %} {% load static %}
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{% static 'animalfacts/style.css' %}"
+/>
+<ul class="fact__list">
   {% for fact in animal_fact_list %}
   <li>
-    <a href="{% url 'detail' fact.id %}">{{ fact.title }}</a>
-    <ul>
+    <article class="fact__card">
       <img
-        width="200"
-        height="200"
+        class="fact__image"
         src="{{ fact.image.url }}"
         alt="{{ fact.breed.title }} | {{ fact.description}}"
       />
-      <li>Breed: {{ fact.breed.title }}</li>
-      <li>Description: {{ fact.description }}</li>
-      <li>Rating: {{ fact.average_rating | floatformat:1 }}</li>
-    </ul>
+      <div class="fact__description">
+        <h2 href="{% url 'detail' fact.id %}" class="fact__title">
+          {{ fact.title }}
+        </h2>
+        <li>Breed: {{ fact.breed.title }}</li>
+        <li>Description: {{ fact.description }}</li>
+        <li>Rating: {{ fact.average_rating | floatformat:1 }}</li>
+      </div>
+    </article>
   </li>
   {% endfor %}
 </ul>
