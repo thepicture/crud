@@ -1,0 +1,22 @@
+<form
+  action="{% url 'api_create' %}"
+  method="post"
+  enctype="multipart/form-data"
+>
+  {% csrf_token %}
+  <input name="title" placeholder="Title" type="text" required />
+  <br />
+  <input name="description" placeholder="Description" type="text" />
+  <br />
+  <input name="fact" placeholder="Fact" type="text" required />
+  <br />
+  Image: <input name="image" placeholder="Image" type="file" required />
+  <br />
+  <select name="breed" title="Breed" type="text" required>
+    {% for breed in breeds %}
+    <option value="{{ breed.id }}">{{ breed.title }}</option>
+    {% endfor %}
+  </select>
+  <br />
+  <input type="submit" />
+</form>
