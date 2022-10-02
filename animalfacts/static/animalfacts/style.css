@@ -48,6 +48,10 @@ img {
     margin-top: 1em;
 
     cursor: pointer;
+
+    box-sizing: border-box;
+    text-decoration: none;
+    text-align: center;
 }
 
 .fact__button--primary {

@@ -35,6 +35,20 @@ def create(request) -> HttpResponse:
     return HttpResponse(template.render(context, request))
 
 
+def edit(request, fact_id) -> HttpResponse:
+    template = loader.get_template('animalfacts/edit.html')
+    fact = AnimalFact.objects.get(pk=fact_id)
+    context = {
+        'id': fact.id,
+        'title': fact.title,
+        'description': fact.description,
+        'fact': fact.fact,
+        'image': fact.image,
+        'breeds': Breed.objects.all(),
+    }
+    return HttpResponse(template.render(context, request))
+
+
 def api_create(request: HttpRequest) -> HttpResponse:
     post = request.POST
     fact = AnimalFact(title=post['title'],
@@ -42,6 +56,21 @@ def api_create(request: HttpRequest) -> HttpResponse:
                       fact=post['fact'],
                       breed=Breed.objects.get(pk=post['breed']),
                       image=request.FILES['image'])
+    fact.save()
+    template = loader.get_template('animalfacts/saved.html')
+    context = {}
+    return HttpResponse(template.render(context, request))
+
+
+def api_edit(request: HttpRequest) -> HttpResponse:
+    post = request.POST
+    fact = AnimalFact.objects.get(pk=post['id'])
+    fact.title = post['title']
+    fact.description = post['description']
+    fact.fact = post['fact']
+    fact.breed = Breed.objects.get(pk=post['breed'])
+    if len(request.FILES) > 0:
+        fact.image = request.FILES['image']
     fact.save()
     template = loader.get_template('animalfacts/saved.html')
     context = {}

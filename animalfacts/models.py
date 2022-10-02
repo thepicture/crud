@@ -17,9 +17,11 @@ class AnimalFact(models.Model):
     image = models.ImageField(null=True)
 
     def average_rating(self):
-        return Rating.objects \
-            .filter(animal_fact_id=self.id) \
-            .aggregate(Avg('count_of_stars'))['count_of_stars__avg']
+        ratings = Rating.objects.filter(animal_fact_id=self.id)
+        if not len(ratings):
+            return 0
+        else:
+            return ratings.aggregate(Avg('count_of_stars'))['count_of_stars__avg']
 
     def __str__(self) -> str:
         return self.title + ', ' + self.breed.title

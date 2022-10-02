@@ -1,0 +1,44 @@
+<form action="{% url 'api_edit' %}" method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  <input name="id" placeholder="Identifier" value="{{ id }}" hidden />
+  <input
+    name="title"
+    placeholder="Title"
+    type="text"
+    value="{{ title }}"
+    required
+  />
+  <br />
+  <input
+    name="description"
+    placeholder="Description"
+    type="text"
+    value="{{ description }}"
+  />
+  <br />
+  <input
+    name="fact"
+    placeholder="Fact"
+    type="text"
+    required
+    value="{{ fact }}"
+  />
+  <br />
+  Image:
+  <img
+    class="fact__image"
+    src="{{ image.url }}"
+    alt="{{ fact.description}}"
+    width="200"
+    height="200"
+  />
+  <input name="image" placeholder="Image" type="file" value="{{ image }}" />
+  <br />
+  <select name="breed" title="Breed" type="text" required>
+    {% for breed in breeds %}
+    <option value="{{ breed.id }}">{{ breed.title }}</option>
+    {% endfor %}
+  </select>
+  <br />
+  <input type="submit" />
+</form>
