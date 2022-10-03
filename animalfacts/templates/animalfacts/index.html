@@ -1,4 +1,5 @@
-{% if animal_fact_list %} {% load static %}
+{% if animal_fact_list %}
+{% load static %}
 <link
   rel="stylesheet"
   type="text/css"
@@ -19,7 +20,9 @@
         </h2>
         <li>Breed: {{ fact.breed.title }}</li>
         <li>Description: {{ fact.description }}</li>
-        <li>Rating: {{ fact.average_rating | floatformat:1 }}</li>
+        <li>
+          Rating: {{ fact.rating_as_stars }}
+        </li>
         <a
           href="{% url 'edit' fact.id %}"
           class="fact__button fact__button--primary"

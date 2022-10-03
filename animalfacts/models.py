@@ -23,6 +23,10 @@ class AnimalFact(models.Model):
         else:
             return ratings.aggregate(Avg('count_of_stars'))['count_of_stars__avg']
 
+    def rating_as_stars(self):
+        rating = round(self.average_rating())
+        return '\u2605' * (rating) + '\u2730' * (5 - rating)
+
     def __str__(self) -> str:
         return self.title + ', ' + self.breed.title
 
