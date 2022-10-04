@@ -1,0 +1,19 @@
+{% load static %}
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{% static 'animalfacts/style.css' %}"
+/>
+Operation is irreversible! Do you really want to delete the animal fact?
+<form action="{% url 'delete' fact_id %}" method="post">
+    {% csrf_token %}
+    <input
+      type="submit"
+      value="Yes, delete"
+      class="fact__button fact__button--dangerous"
+    />
+  </form>
+  <a
+  href="{% url 'index' %}"
+  class="fact__button fact__button--primary"
+  >No, back to the index page</a>

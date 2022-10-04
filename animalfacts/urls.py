@@ -11,5 +11,6 @@ urlpatterns = [
     path('api/create/', views.api_create, name='api_create'),
     path('api/edit/', views.api_edit, name='api_edit'),
     path('delete/<int:fact_id>/', views.delete, name='delete'),
+    path('confirm/<int:fact_id>/', views.confirm, name='confirm'),
     path('ratings/', include('star_ratings.urls', namespace='ratings')),
 ]

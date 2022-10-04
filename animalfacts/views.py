@@ -19,6 +19,13 @@ def index(request) -> HttpResponse:
 def detail(_, fact_id) -> HttpResponse:
     return HttpResponse('The fact %s' % fact_id)
 
+def confirm(request, fact_id) -> HttpResponse:
+    template = loader.get_template('animalfacts/confirm.html')
+    context = {
+        'fact_id': fact_id,
+    }
+    return HttpResponse(template.render(context, request))
+
 
 def delete(request, fact_id) -> HttpResponse:
     AnimalFact.objects.get(pk=fact_id).delete()

@@ -29,16 +29,11 @@
         <a
           href="{% url 'edit' fact.id %}"
           class="fact__button fact__button--primary"
-          >Edit</a
-        >
-        <form action="{% url 'delete' fact.id %}" method="post">
-          {% csrf_token %}
-          <input
-            type="submit"
-            value="Delete"
-            class="fact__button fact__button--dangerous"
-          />
-        </form>
+          >Edit</a>
+        <a
+        href="{% url 'confirm' fact.id %}"
+        class="fact__button fact__button--dangerous"
+        >Delete</a>
       </div>
     </article>
   </li>
@@ -47,4 +42,4 @@
 {% else %}
 <p>No facts are available.</p>
 {% endif %}
-<a href="{% url 'create' %}">Add</a>
+<a href="{% url 'create' %}" class="fact__button fact__button--primary">Add</a>
