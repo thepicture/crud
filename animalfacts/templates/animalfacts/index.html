@@ -1,10 +1,13 @@
-{% if animal_fact_list %}
 {% load static %}
 <link
   rel="stylesheet"
   type="text/css"
   href="{% static 'animalfacts/style.css' %}"
 />
+<link rel="stylesheet" href="{% static 'star-ratings/css/star-ratings.css' %}">
+<script type="text/javascript" src="{% static 'star-ratings/js/dist/star-ratings.min.js' %}"></script>
+{% if animal_fact_list %}
+{% load ratings %}
 <ul class="fact__list">
   {% for fact in animal_fact_list %}
   <li>
@@ -21,7 +24,7 @@
         <li>Breed: {{ fact.breed.title }}</li>
         <li>Description: {{ fact.description }}</li>
         <li>
-          Rating: {{ fact.rating_as_stars }}
+          {% ratings fact %}
         </li>
         <a
           href="{% url 'edit' fact.id %}"

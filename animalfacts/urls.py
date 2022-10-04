@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, include
 
 from . import views
 
@@ -11,4 +11,5 @@ urlpatterns = [
     path('api/create/', views.api_create, name='api_create'),
     path('api/edit/', views.api_edit, name='api_edit'),
     path('delete/<int:fact_id>/', views.delete, name='delete'),
+    path('ratings/', include('star_ratings.urls', namespace='ratings')),
 ]
