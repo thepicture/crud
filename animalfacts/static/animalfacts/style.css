@@ -71,3 +71,15 @@ img {
 .fact__button--dangerous:hover {
     background: #c73c24;
 }
+
+.chart__button--align-left {
+    position: absolute;
+    left: 0;
+    width: auto;
+    margin-left: 1em;
+}
+
+.chart__header--align-right {
+    position: absolute;
+    right: 0;
+}

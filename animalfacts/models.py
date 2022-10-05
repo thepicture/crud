@@ -34,7 +34,7 @@ class LineChartJSONView(BaseLineChartView):
 
     def get_providers(self):
         """Return names of datasets."""
-        return ["Breed"]
+        return ["Stars"]
 
     def get_data(self):
         """Return dataset to plot."""
