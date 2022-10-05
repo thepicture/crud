@@ -17,4 +17,5 @@ urlpatterns = [
     path('ratings/', include('star_ratings.urls', namespace='ratings')),
     path('popularity', popularity_chart, name='popularity'),
     path('popularityJSON', popularity_chart_json, name='popularity_json'),
+    path('popularity/downloadJSON', views.popularity_json, name='download_popularity_as_json'),
 ]

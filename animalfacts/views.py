@@ -1,3 +1,4 @@
+from datetime import datetime
 from django.http import HttpResponse
 
 from django.views.generic import TemplateView
@@ -20,6 +21,7 @@ def index(request) -> HttpResponse:
 
 def detail(_, fact_id) -> HttpResponse:
     return HttpResponse('The fact %s' % fact_id)
+
 
 def confirm(request, fact_id) -> HttpResponse:
     template = loader.get_template('animalfacts/confirm.html')
@@ -85,5 +87,15 @@ def api_edit(request: HttpRequest) -> HttpResponse:
     context = {}
     return HttpResponse(template.render(context, request))
 
-popularity_chart = TemplateView.as_view(template_name='animalfacts/popularity.html')
+
+popularity_chart = TemplateView.as_view(
+    template_name='animalfacts/popularity.html')
 popularity_chart_json = LineChartJSONView.as_view()
+
+
+def popularity_json(request: HttpRequest) -> HttpResponse:
+    content = popularity_chart_json(request).content
+    headers = {
+        'content-disposition': 'attachment; filename="popularity_{}.json"'.format(str(datetime.now()))
+    }
+    return HttpResponse(content=content, headers=headers)
