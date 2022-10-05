@@ -1,10 +1,12 @@
 from django.http import HttpResponse
 
+from django.views.generic import TemplateView
+
 from django.template import loader
 
 from django.http import HttpRequest
 
-from .models import AnimalFact, Breed
+from .models import AnimalFact, Breed, LineChartJSONView
 
 
 def index(request) -> HttpResponse:
@@ -82,3 +84,6 @@ def api_edit(request: HttpRequest) -> HttpResponse:
     template = loader.get_template('animalfacts/saved.html')
     context = {}
     return HttpResponse(template.render(context, request))
+
+popularity_chart = TemplateView.as_view(template_name='animalfacts/popularity.html')
+popularity_chart_json = LineChartJSONView.as_view()

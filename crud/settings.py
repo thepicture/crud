@@ -19,7 +19,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'animalfacts',
-    'star_ratings'
+    'star_ratings',
+    'chartjs'
 ]
 
 MIDDLEWARE = [

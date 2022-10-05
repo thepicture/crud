@@ -2,6 +2,8 @@ from django.urls import path, include
 
 from . import views
 
+from .views import popularity_chart, popularity_chart_json
+
 appname = 'animalfacts'
 urlpatterns = [
     path('', views.index, name='index'),
@@ -13,4 +15,6 @@ urlpatterns = [
     path('delete/<int:fact_id>/', views.delete, name='delete'),
     path('confirm/<int:fact_id>/', views.confirm, name='confirm'),
     path('ratings/', include('star_ratings.urls', namespace='ratings')),
+    path('popularity', popularity_chart, name='popularity'),
+    path('popularityJSON', popularity_chart_json, name='popularity_json'),
 ]
