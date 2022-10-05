@@ -1,22 +1,31 @@
+{% load static %}
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{% static 'animalfacts/style.css' %}"
+/>
 <form
   action="{% url 'api_create' %}"
   method="post"
   enctype="multipart/form-data"
+  class="edit__container"
 >
   {% csrf_token %}
-  <input name="title" placeholder="Title" type="text" required />
-  <br />
-  <input name="description" placeholder="Description" type="text" />
-  <br />
-  <input name="fact" placeholder="Fact" type="text" required />
-  <br />
-  Image: <input name="image" placeholder="Image" type="file" required />
-  <br />
-  <select name="breed" title="Breed" type="text" required>
+  <label for="title" class="edit__label">Title</label>
+  <input id="title" name="title" placeholder="Title" type="text" required />
+  <label for="description" class="edit__label">Description</label>
+  <input id="description" name="description" placeholder="Description" type="text" />
+  <label id="fact" for="fact" class="edit__label">Fact</label>
+  <input id="fact" name="fact" placeholder="Fact" type="text" required />
+  <label for="image" class="edit__label">Image</label>
+  <div>
+    <input id="image" name="image" placeholder="Image" type="file" required />
+  </div>
+  <label for="breed" class="edit__label">Breed</label>
+  <select id="breed" name="breed" title="Breed" type="text" required>
     {% for breed in breeds %}
     <option value="{{ breed.id }}">{{ breed.title }}</option>
     {% endfor %}
   </select>
-  <br />
-  <input type="submit" />
+  <input type="submit" class="fact__button fact__button--primary edit__save-btn"/>
 </form>

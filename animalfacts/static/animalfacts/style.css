@@ -83,3 +83,37 @@ img {
     position: absolute;
     right: 0;
 }
+
+.edit__container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.edit__save-btn {
+    grid-column: 1 / 3;
+}
+
+.edit__label {
+    text-align: end;
+    align-self: center;
+    margin-right: 1em;
+}
+
+.edit__container input,
+.edit__container img,
+.edit__container select {
+    margin: 1em 0;
+}
+
+@media screen and (max-width: 1080px) {
+    .edit__container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .edit__label {
+        width: 100%;
+        margin-left: 1em;
+        text-align: left;
+    }
+}
