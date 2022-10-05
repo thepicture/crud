@@ -13,8 +13,12 @@
     </head>
     <body>
         <h1 class="chart__header--align-right">Animal fact popularity</h1>
-        <a href="{% url 'download_popularity_as_json' %}" 
-           class="fact__button fact__button--primary chart__button--align-left">Download as JSON</a>
+        <div class="chart__button--align-left">
+            <a href="{% url 'download_popularity_as_json' %}" 
+               class="fact__button fact__button--primary">Download as JSON</a>
+            <a href="{% url 'index' %}" 
+               class="fact__button fact__button--primary">The Index Page</a>
+        </div>
         <canvas id="popularity-chart"></canvas>
 
         <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.0.min.js"></script>
